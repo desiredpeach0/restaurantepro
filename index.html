@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Sabor y Tradición - Menú Interactivo</title>
+    <!-- 1. Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 2. CSS Personalizado */
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        .hero-section { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; color: white; padding: 120px 0; text-align: center; }
+        .card-img-top { height: 220px; object-fit: cover; }
+        .dish-card { transition: transform 0.3s; }
+        .dish-card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Navegación con Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">🍽️ Sabor y Tradición</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#menu">Nuestro Menú</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pedido" data-bs-toggle="modal" data-bs-target="#pedidoModal">Hacer Pedido</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Principal (HTML + CSS) -->
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Disfruta de la Mejor Comida</h1>
+            <p class="lead mt-3">Explora nuestra variedad de platillos preparados al momento con ingredientes frescos.</p>
+            <button class="btn btn-warning btn-lg mt-3 fw-bold text-dark" data-bs-toggle="modal" data-bs-target="#pedidoModal">¡Pide tu Platillo Aquí!</button>
+        </div>
+    </header>
+
+    <!-- Sección de Menú y Platillos con Tarjetas Bootstrap -->
+    <main class="container my-5" id="menu">
+        <h2 class="text-center mb-4 fw-bold">Elige tus Platillos Favoritos</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card dish-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Hamburguesa Artesanal">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Hamburguesa Artesanal</h5>
+                        <p class="card-text text-muted">Carne 100% de res, queso cheddar fundido, tocino crujiente y papas gajo.</p>
+                        <p class="text-success fw-bold">$160.00 MXN</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card dish-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Pizza a la Leña">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Pizza a la Leña</h5>
+                        <p class="card-text text-muted">Masa madre crujiente, pepperoni, albahaca fresca y mezcla de quesos finos.</p>
+                        <p class="text-success fw-bold">$220.00 MXN</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card dish-card shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Postre de Chocolate">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Volcán de Chocolate</h5>
+                        <p class="card-text text-muted">Pastelito tibio de chocolate con centro líquido y bola de helado de vainilla.</p>
+                        <p class="text-success fw-bold">$90.00 MXN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Seleccionar Platillo (JavaScript / Bootstrap) -->
+    <div class="modal fade" id="pedidoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title">Selecciona tu Platillo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formPedido">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre completo:</label>
+                            <input type="text" class="form-control" id="nombreUser" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono de contacto:</label>
+                            <input type="tel" class="form-control" id="telUser" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Elige tu platillo:</label>
+                            <select class="form-select" id="platilloSeleccionado">
+                                <option>Hamburguesa Artesanal - $160</option>
+                                <option>Pizza a la Leña - $220</option>
+                                <option>Volcán de Chocolate - $90</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 fw-bold text-dark">Confirmar Pedido</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página con medios de contacto directos -->
+    <footer class="bg-dark text-white text-center py-4 mt-5" id="contacto">
+        <div class="container">
+            <p class="mb-1 fw-bold">Restaurante Sabor y Tradición</p>
+            <p class="mb-1 text-muted">Teléfono: +52 (999) 987-6543 | Correo: pedidos@saborytradicion.com</p>
+            <p class="small text-muted">&copy; 2026 Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 4. JavaScript Funcional -->
+    <script>
+        document.getElementById('formPedido').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombreUser').value;
+            const platillo = document.getElementById('platilloSeleccionado').value;
+            alert(`¡Gracias por tu pedido, ${nombre}! Has seleccionado: "${platillo}". Tu orden ha sido recibida con éxito.`);
+            const modalElement = document.getElementById('pedidoModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+            this.reset();
+        });
+    </script>
+</body>
+</html>
